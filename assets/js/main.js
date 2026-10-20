@@ -1,17 +1,17 @@
 const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "assets/photos/photo-03.jpg", "assets/photos/photo-04.jpg", "assets/photos/photo-05.jpg", "assets/photos/photo-06.jpg", "assets/photos/photo-07.jpg", "assets/photos/photo-08.jpg", "assets/photos/photo-09.jpg", "assets/photos/photo-10.jpg", "assets/photos/photo-11.jpg", "assets/photos/photo-12.jpg", "assets/photos/photo-13.jpg", "assets/photos/photo-14.jpg", "assets/photos/photo-15.jpg", "assets/photos/photo-16.jpg", "assets/photos/photo-17.jpg", "assets/photos/photo-18.jpg", "assets/photos/photo-19.jpg", "assets/photos/photo-20.jpg", "assets/photos/photo-21.jpg", "assets/photos/photo-22.jpg", "assets/photos/photo-23.jpg", "assets/photos/photo-24.jpg", "assets/photos/photo-25.jpg", "assets/photos/photo-26.jpg", "assets/photos/photo-27.jpg"];
     const WISHES = [
-      "Mong em luôn khoẻ mạnh nhé.",
-      "Chúc em luôn bình yên, dù ngày hôm nay có bận rộn thế nào.",
-      "Chúc em học thật giỏi.",
-      "Mong em đạt được những mục tiêu mà mình muốn.",
-      "Cố gắng giữ gìn sức khoẻ nhé.",
-      "Nhớ chăm sóc bản thân mình thật tốt nhé.",
-      "Chúc em ngày 20/10 nhẹ nhàng và nhiều niềm vui.",
-      "Ăn uống đủ bữa, ngủ đủ giấc, và nhớ uống nước nhé.",
-      "Mong em luôn khoẻ, luôn bình yên.",
-      "Cố gắng vừa đủ thôi, mệt thì nhớ nghỉ ngơi.",
-      "Mong mọi dự định của em đều thành hiện thực.",
-      "Cố chăm sóc bản thân mình nhé."
+      "Chúc em luôn xinh đẹp, rạng rỡ và luôn tươi vui mỗi ngày.",
+      "Chúc em luôn hạnh phúc và an yên với những gì mình đang có.",
+      "Chúc em học thật tốt, gặt hái được nhiều thành tích như mong ước.",
+      "Mong em mỗi sáng thức dậy đều ngập tràn niềm vui và sự lạc quan.",
+      "Chúc em luôn tự tin, vững vàng trên mọi chặng đường phía trước.",
+      "Dù cuộc sống có bận rộn đến đâu, mong em luôn giữ được nụ cười tỏa nắng.",
+      "Mong em luôn khoẻ mạnh, ăn ngon ngủ ngoan và biết yêu thương chính mình.",
+      "Chúc em ngày 20/10 nhẹ nhàng, ấm áp và ngập tràn hạnh phúc.",
+      "Mong mọi may mắn và những điều dễ thương nhất luôn mỉm cười với Ngọc Mai.",
+      "Cố gắng vừa đủ thôi, mệt thì nhớ nghỉ ngơi và đừng tạo áp lực cho mình nhé.",
+      "Chúc em luôn hồn nhiên, trong trẻo và luôn an yên trong tâm hồn.",
+      "Chúc em đạt được những mục tiêu và dự định mà em hằng ấp ủ."
     ];
 
     const canvas = document.getElementById('heartCanvas');
@@ -464,7 +464,7 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
     }
 
     /* ================= HOA NỞ ================= */
-    const GREET_START = 6.6, PETAL_END = 6.8, NEXT_SHOW = 8.0, AUTO_WAIT = 5;
+    const GREET_START = 6.6, PETAL_END = 7.5, NEXT_SHOW = 12.0, AUTO_WAIT = 7.5;
     let petalStart = null;
     const easeBack = x => { x = clamp01(x); const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
 
@@ -755,7 +755,7 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
     /* ================= WARP RỒI HỐ ĐEN ================= */
     const warpStars = []; const bhDisk = []; const bhArch = []; const infall = [];
     function startWarp() {
-      phase = 'warp'; phaseT = 0; nextBtn.style.display = 'none'; bhZoom = bhTarget = 1; buildBhPhotos(); pFly.length = 0;
+      phase = 'warp'; phaseT = 0; nextBtn.style.display = 'none'; bhZoom = bhTarget = 0.78; buildBhPhotos(); pFly.length = 0;
       warpStars.length = 0;
       const cols = ['210,225,255', '255,210,235', '205,190,255', '255,255,255'];
       for (let i = 0; i < 650; i++) warpStars.push({ x: (Math.random() - .5) * 2, y: (Math.random() - .5) * 2, z: Math.random() * 2 + 0.05, c: cols[(Math.random() * 4) | 0] });
@@ -916,27 +916,56 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
 
     /* ================= ẢNH BAY QUANH HỐ ĐEN + ZOOM ================= */
     const bhPhotos = [], bhBack = [], bhFront = [];
-    let bhZoom = 1, bhTarget = 1; const BH_MIN = 0.35, BH_MAX = 3.2;
+    let bhZoom = 0.78, bhTarget = 0.78; const BH_MIN = 0.28, BH_MAX = 3.2;
     const bhZ = k => { bhTarget = Math.max(BH_MIN, Math.min(BH_MAX, bhTarget * k)); };
     document.getElementById('zIn').addEventListener('click', e => { e.stopPropagation(); bhZ(1.3); });
     document.getElementById('zOut').addEventListener('click', e => { e.stopPropagation(); bhZ(1 / 1.3); });
 
+    // 4 vành đai quỹ đạo phân tầng quanh hố đen
+    const BH_RINGS = [
+      { r: 2.1, sp: 0.38, tilt: -0.15, yRange: [-0.6, 0.6], k: 0.95 },
+      { r: 3.2, sp: -0.28, tilt: 0.18, yRange: [-1.2, 1.2], k: 1.15 },
+      { r: 4.4, sp: 0.22, tilt: -0.25, yRange: [-1.8, 1.8], k: 1.35 },
+      { r: 5.7, sp: -0.16, tilt: 0.12, yRange: [-2.5, 2.5], k: 1.55 }
+    ];
+
     function buildBhPhotos() {
       bhPhotos.length = 0;
       photoImgs.forEach((im, i) => {
-        const up = Math.random() < 0.38;   // một phần bay cao hơn hố đen
-        bhPhotos.push({ i, im, a: rnd(0, Math.PI * 2), r: rnd(2.2, 5.4), y: up ? rnd(-4.4, -1.9) : rnd(-1.7, 2.6), sp: (Math.random() < 0.78 ? 1 : -1) * rnd(0.16, 0.42), k: rnd(0.9, 1.6), bob: rnd(0, 10), tilt: rnd(-0.18, 0.18) });
+        const ringIdx = i % BH_RINGS.length;
+        const ring = BH_RINGS[ringIdx];
+        const countInRing = Math.ceil(photoImgs.length / BH_RINGS.length);
+        const posInRing = Math.floor(i / BH_RINGS.length);
+        const baseAngle = (posInRing / countInRing) * Math.PI * 2 + rnd(-0.15, 0.15);
+
+        bhPhotos.push({
+          i,
+          im,
+          ringIdx,
+          a: baseAngle,
+          r: ring.r + rnd(-0.25, 0.25),
+          y: rnd(ring.yRange[0], ring.yRange[1]),
+          sp: ring.sp * rnd(0.9, 1.1),
+          k: ring.k * rnd(0.92, 1.08),
+          tilt: ring.tilt + rnd(-0.08, 0.08),
+          bob: rnd(0, 10)
+        });
       });
     }
+
     function computeBhPhotos(cx, cy, R) {
       bhBack.length = 0; bhFront.length = 0;
-      const U = Math.min(width, height) * 0.11, wx = Math.min(1, (width * 0.46) / (5.6 * U));
+      const U = Math.min(width, height) * 0.11;
+      const wx = Math.min(1.05, (width * 0.48) / (5.6 * U));
       for (const o of bhPhotos) {
         const im = o.im; if (!im.naturalWidth) continue;
-        const ang = o.a + clock * o.sp / Math.sqrt(o.r), sa = Math.sin(ang), ca = Math.cos(ang);
-        const ar = im.naturalWidth / im.naturalHeight, sz = R * o.k * (0.8 + 0.3 * (sa + 1) / 2);
+        const ang = o.a + clock * o.sp;
+        const sa = Math.sin(ang), ca = Math.cos(ang);
+        const ar = im.naturalWidth / im.naturalHeight;
+        const sz = R * o.k * (0.8 + 0.3 * (sa + 1) / 2);
         const w = ar >= 1 ? sz : sz * ar, hh = ar >= 1 ? sz / ar : sz;
-        const x = cx + ca * o.r * R * wx, y = cy + o.y * R + sa * o.r * R * 0.22 + Math.sin(clock * 0.8 + o.bob) * 0.12 * R;
+        const x = cx + ca * o.r * R * wx;
+        const y = cy + o.y * R + sa * o.r * R * 0.24 + Math.sin(clock * 0.8 + o.bob) * 0.12 * R;
         (sa > 0 ? bhFront : bhBack).push({ o, x, y, w, h: hh, sa });
       }
       bhBack.sort((p, q) => p.sa - q.sa); bhFront.sort((p, q) => p.sa - q.sa);
@@ -996,11 +1025,12 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
     const LETTER = {
       to: 'Gửi Ngọc Mai,',
       body: [
-        'Nhân ngày 20/10, mong em luôn khoẻ mạnh, luôn bình yên và học thật giỏi.',
-        'Mong em đạt được những mục tiêu mà mình muốn. Dù bận đến đâu, em cũng cố gắng giữ gìn sức khoẻ, ăn uống đủ bữa, ngủ đủ giấc và chăm sóc bản thân mình thật tốt nhé.',
-        'Chúc em một lần nữa: 20/10 thật vui, thật nhẹ nhàng, và gặp thật nhiều điều dễ thương.'
+        'Nhân ngày 20/10, chúc em luôn luôn xinh đẹp, rạng rỡ và giữ trọn nét hồn nhiên, trong trẻo vốn có.',
+        'Mong em luôn hạnh phúc và an yên với tất cả những gì mình đang có. Chúc em học tập thật tốt, gặt hái được mọi điều em mong ước và tự tin bước đi trên con đường của chính mình.',
+        'Dù mỗi ngày có bận rộn thế nào, em hãy luôn nhớ ăn ngủ đúng giờ, uống nhiều nước và luôn dịu dàng, thương yêu lấy bản thân nhé.',
+        'Chúc em có một ngày 20/10 thật đẹp, thật trọn vẹn và mọi mong ước đều trở thành hiện thực.'
       ],
-      sign: 'Thân gửi ♥'
+      sign: 'Thân gửi Ngọc Mai ♥'
     };
     const letterEl = document.getElementById('letter'), envEl = document.getElementById('env'), paperEl = document.getElementById('paper');
     const paperIn = document.getElementById('paperIn'), ltText = document.getElementById('ltText'), ltDone = document.getElementById('ltDone');
@@ -1059,12 +1089,258 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
     function closeLetter() {
       ltTimers.forEach(clearTimeout); ltTimers = []; clearTimeout(ltTyping); ltTyping = null;
       letterEl.classList.remove('show');
+      // Chuyển sang cảnh hiệu ứng animation đi qua từng ảnh treo dây thừng
+      startRopeGallery();
     }
     letterBtn.addEventListener('click', e => { e.stopPropagation(); openLetter(); });
     document.getElementById('ltX').addEventListener('click', closeLetter);
     ltDone.addEventListener('click', closeLetter);
     paperEl.addEventListener('click', () => { if (ltIdx < ltChars.length && ltChars.length) finishLetter(); });
-    window.addEventListener('keydown', e => { if (e.key === 'Escape') closeLetter(); });
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        if (ropeGalleryEl.classList.contains('show')) closeRopeGallery();
+        else closeLetter();
+      }
+    });
+
+    /* ================= CẢNH TRIỂN LÃM DÂY THỪNG TREO ẢNH POLAROID ================= */
+    const ropeGalleryEl = document.getElementById('ropeGallery');
+    const ropeSvg = document.getElementById('ropeSvg');
+    const clotheslineTrack = document.getElementById('clotheslineTrack');
+    const galleryLights = document.getElementById('galleryLights');
+    const photoCounter = document.getElementById('photoCounter');
+    const prevPhotoBtn = document.getElementById('prevPhotoBtn');
+    const nextPhotoBtn = document.getElementById('nextPhotoBtn');
+    const autoPhotoBtn = document.getElementById('autoPhotoBtn');
+    const closeRopeBtn = document.getElementById('closeRopeBtn');
+    const grandWishModal = document.getElementById('grandWishModal');
+    const closeGrandBtn = document.getElementById('closeGrandBtn');
+
+    let currentPhotoIdx = 0;
+    let isAutoPlaying = true;
+    let autoPlayTimer = null;
+    let cardElements = [];
+
+    // Tạo bóng đèn đom đóm / đèn led treo trên cao
+    function initGalleryLights() {
+      galleryLights.innerHTML = '';
+      const colors = ['#ffe89c', '#ff9ec6', '#a1d8ff', '#ffd275', '#e4aaff'];
+      const count = Math.max(12, Math.floor(window.innerWidth / 70));
+      for (let i = 0; i < count; i++) {
+        const bulb = document.createElement('div');
+        bulb.className = 'fairy-bulb';
+        const c = colors[i % colors.length];
+        bulb.style.color = c;
+        bulb.style.background = c;
+        bulb.style.left = `${(i / (count - 1)) * 96 + 2}%`;
+        bulb.style.top = `${20 + Math.sin(i * 0.9) * 16}px`;
+        bulb.style.animationDelay = `${(i * 0.25) % 2.5}s`;
+        galleryLights.appendChild(bulb);
+      }
+    }
+
+    function initRopeCards() {
+      clotheslineTrack.innerHTML = '';
+      cardElements = [];
+      const total = PHOTOS.length;
+
+      PHOTOS.forEach((src, idx) => {
+        const card = document.createElement('div');
+        card.className = 'hanging-card';
+        card.dataset.index = idx;
+
+        // Kẹp gỗ
+        const pin = document.createElement('div');
+        pin.className = 'clothespin';
+        card.appendChild(pin);
+
+        // Khung ảnh
+        const pBox = document.createElement('div');
+        pBox.className = 'card-photo-box';
+        const img = document.createElement('img');
+        img.src = src;
+        img.loading = 'lazy';
+        pBox.appendChild(img);
+        card.appendChild(pBox);
+
+        // Chú thích lời chúc
+        const cap = document.createElement('div');
+        cap.className = 'card-caption';
+        cap.textContent = WISHES[idx % WISHES.length];
+        card.appendChild(cap);
+
+        const dateTag = document.createElement('div');
+        dateTag.className = 'card-date-tag';
+        dateTag.textContent = '20.10 ♥';
+        card.appendChild(dateTag);
+
+        card.addEventListener('click', () => {
+          stopAutoPlay();
+          goToPhoto(idx);
+        });
+
+        clotheslineTrack.appendChild(card);
+        cardElements.push(card);
+      });
+    }
+
+    // Vẽ dây thừng võng tự nhiên nối qua tất cả các ảnh
+    function drawRopes() {
+      const W = window.innerWidth;
+      const H = window.innerHeight;
+      const cardW = window.innerWidth <= 600 ? 205 : 250;
+      const spacing = cardW + 80;
+      const centerX = W / 2;
+      const trackBaseY = H * 0.40;
+
+      let pathD = '';
+      const pinCoords = [];
+
+      cardElements.forEach((card, idx) => {
+        const offset = (idx - currentPhotoIdx) * spacing;
+        const x = centerX + offset - (cardW / 2);
+        // Võng cong nhẹ theo khoảng cách từ tâm
+        const distFromCenter = Math.abs(centerX - (x + cardW / 2));
+        const sag = Math.sin((idx + clock * 0.5) * 0.8) * 8 + (distFromCenter / W) * 25;
+        const y = trackBaseY + sag;
+
+        // Góc đung đưa nhẹ như bị gió lay
+        const sway = Math.sin(clock * 1.5 + idx * 0.7) * 3.5;
+        const targetRot = (idx === currentPhotoIdx ? 0 : (idx - currentPhotoIdx) * 1.8) + sway;
+
+        card.style.left = `${x}px`;
+        card.style.top = `${y}px`;
+        card.style.transform = `rotate(${targetRot}deg)`;
+
+        if (idx === currentPhotoIdx) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+
+        // Tọa độ đỉnh kẹp gỗ để vẽ dây thừng đi qua
+        const pinX = x + cardW / 2;
+        const pinY = y - 10;
+        pinCoords.push({ x: pinX, y: pinY });
+      });
+
+      // Tạo đường dây thừng cong mềm mại (Catmull-Rom hoặc Bezier) nối các kẹp
+      if (pinCoords.length > 0) {
+        // Kéo dài ra 2 đầu biên màn hình
+        const first = pinCoords[0];
+        const last = pinCoords[pinCoords.length - 1];
+        pathD = `M ${first.x - 300} ${first.y - 40} Q ${first.x - 150} ${first.y - 10}, ${first.x} ${first.y}`;
+
+        for (let i = 0; i < pinCoords.length - 1; i++) {
+          const p1 = pinCoords[i];
+          const p2 = pinCoords[i + 1];
+          const midX = (p1.x + p2.x) / 2;
+          const sagDepth = 35 + Math.sin(i * 1.4 + clock) * 6;
+          const midY = (p1.y + p2.y) / 2 + sagDepth;
+          pathD += ` Q ${midX} ${midY}, ${p2.x} ${p2.y}`;
+        }
+
+        pathD += ` Q ${last.x + 150} ${last.y - 10}, ${last.x + 300} ${last.y - 40}`;
+
+        ropeSvg.innerHTML = `
+          <path d="${pathD}" fill="none" stroke="#68472f" stroke-width="6" stroke-linecap="round" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.6))"/>
+          <path d="${pathD}" fill="none" stroke="#cfa671" stroke-width="3.5" stroke-dasharray="8 5" stroke-linecap="round"/>
+          <path d="${pathD}" fill="none" stroke="#ffe7ba" stroke-width="1.2" stroke-dasharray="3 10"/>
+        `;
+      }
+
+      photoCounter.textContent = `${currentPhotoIdx + 1} / ${PHOTOS.length}`;
+    }
+
+    function goToPhoto(index) {
+      currentPhotoIdx = Math.max(0, Math.min(PHOTOS.length - 1, index));
+      drawRopes();
+
+      // Nếu đi đến ảnh cuối cùng -> Kích hoạt bảng chúc mừng 20/10 siêu cầu kỳ!
+      if (currentPhotoIdx === PHOTOS.length - 1) {
+        stopAutoPlay();
+        setTimeout(() => {
+          grandWishModal.classList.add('show');
+        }, 1200);
+      }
+    }
+
+    function nextPhoto() {
+      if (currentPhotoIdx < PHOTOS.length - 1) {
+        goToPhoto(currentPhotoIdx + 1);
+      } else {
+        stopAutoPlay();
+        grandWishModal.classList.add('show');
+      }
+    }
+
+    function prevPhoto() {
+      if (currentPhotoIdx > 0) goToPhoto(currentPhotoIdx - 1);
+    }
+
+    function startAutoPlay() {
+      isAutoPlaying = true;
+      autoPhotoBtn.textContent = 'Tạm dừng ⏸';
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = setInterval(nextPhoto, 2800);
+    }
+
+    function stopAutoPlay() {
+      isAutoPlaying = false;
+      autoPhotoBtn.textContent = 'Tự động ▶';
+      clearInterval(autoPlayTimer);
+    }
+
+    function toggleAutoPlay() {
+      if (isAutoPlaying) stopAutoPlay();
+      else startAutoPlay();
+    }
+
+    function startRopeGallery() {
+      initGalleryLights();
+      initRopeCards();
+      currentPhotoIdx = 0;
+      ropeGalleryEl.classList.add('show');
+      grandWishModal.classList.remove('show');
+      drawRopes();
+      startAutoPlay();
+    }
+
+    function closeRopeGallery() {
+      stopAutoPlay();
+      ropeGalleryEl.classList.remove('show');
+      grandWishModal.classList.remove('show');
+    }
+
+    nextPhotoBtn.addEventListener('click', () => { stopAutoPlay(); nextPhoto(); });
+    prevPhotoBtn.addEventListener('click', () => { stopAutoPlay(); prevPhoto(); });
+    autoPhotoBtn.addEventListener('click', toggleAutoPlay);
+    closeRopeBtn.addEventListener('click', closeRopeGallery);
+    closeGrandBtn.addEventListener('click', () => {
+      grandWishModal.classList.remove('show');
+    });
+
+    // Hỗ trợ vuốt chạm cảm ứng kéo trượt ảnh
+    let ropeTouchStartX = 0;
+    clotheslineTrack.addEventListener('touchstart', e => {
+      ropeTouchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    clotheslineTrack.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].clientX - ropeTouchStartX;
+      if (Math.abs(diff) > 45) {
+        stopAutoPlay();
+        if (diff < 0) nextPhoto();
+        else prevPhoto();
+      }
+    });
+
+    // Cập nhật đung đưa dây thừng liên tục theo vòng lặp
+    window.addEventListener('resize', () => {
+      if (ropeGalleryEl.classList.contains('show')) {
+        initGalleryLights();
+        drawRopes();
+      }
+    });
 
     /* ================= VÒNG LẶP ================= */
     let last = performance.now();
@@ -1085,6 +1361,10 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
       }
       if (phase !== 'collapse') drawFlyers(dt);
       if (phase === 'heart' || phase === 'warp') drawPhotoFlyers(dt);
+
+      if (ropeGalleryEl && ropeGalleryEl.classList.contains('show')) {
+        drawRopes();
+      }
 
       if (holding && phase === 'heart') {
         const p = clamp01((performance.now() - holdStart) / 3000);
