@@ -1324,8 +1324,14 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
     prevPhotoBtn.addEventListener('click', () => { stopAutoPlay(); prevPhoto(); });
     autoPhotoBtn.addEventListener('click', toggleAutoPlay);
     closeRopeBtn.addEventListener('click', closeRopeGallery);
-    closeGrandBtn.addEventListener('click', () => {
+    closeGrandBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       grandWishModal.classList.remove('show');
+    });
+    grandWishModal.addEventListener('click', (e) => {
+      if (e.target === grandWishModal) {
+        grandWishModal.classList.remove('show');
+      }
     });
 
     // Hỗ trợ vuốt chạm cảm ứng kéo trượt ảnh
