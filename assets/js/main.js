@@ -1350,14 +1350,14 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
 
     function startAutoPlay() {
       isAutoPlaying = true;
-      autoPhotoBtn.textContent = 'Tạm dừng ⏸';
+      autoPhotoBtn.textContent = 'Tạm dừng';
       clearInterval(autoPlayTimer);
       autoPlayTimer = setInterval(nextPhoto, 2800);
     }
 
     function stopAutoPlay() {
       isAutoPlaying = false;
-      autoPhotoBtn.textContent = 'Tự động ▶';
+      autoPhotoBtn.textContent = 'Tự động';
       clearInterval(autoPlayTimer);
     }
 
