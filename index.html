@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playwrite+VN:wght@100..400&display=swap">
+  <title>Trái Tim 3D - Hoa nở, Warp & Hố đen</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <canvas id="heartCanvas"></canvas>
+  <div class="hint" id="hint">Chạm trái tim để Big Bang 💥 • Chạm ảnh để xem • Kéo xoay 360° • Giữ nút 3 giây ✨</div>
+  <div class="btn-row">
+    <button class="glass-btn" id="rebuildBtn">✨ Tái Tạo Trái Tim</button>
+    <button class="glass-btn" id="holdBtn">💗 Giữ 3 giây</button>
+    <button class="glass-btn liquid" id="nextBtn" style="display:none">Tiếp tục ➜</button>
+    <button class="glass-btn liquid" id="letterBtn" style="display:none">💌 Mở lá thư</button>
+    <button class="glass-btn" id="replayBtn" style="display:none">↺ Xem lại từ đầu</button>
+  </div>
+  <div id="pop">
+    <div class="card"><button class="x" id="popX">×</button>
+      <div class="ph"><img id="popImg" alt=""></div>
+      <div class="tx">
+        <div class="nm">Gửi Ngọc Mai</div>
+        <p id="popTx"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="zoom-ui" id="zoomUI" style="display:none">
+    <button class="glass-btn zbtn" id="zIn" aria-label="Phóng to">＋</button>
+    <button class="glass-btn zbtn" id="zOut" aria-label="Thu nhỏ">－</button>
+  </div>
+
+  <div id="letter">
+    <div id="ltPetals"></div>
+    <button class="lt-x" id="ltX" aria-label="Đóng">×</button>
+    <div class="env" id="env">
+      <div class="env-back"></div>
+      <div class="env-card"></div>
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
+      <div class="env-seal">♥</div>
+    </div>
+    <div class="paper" id="paper">
+      <div class="paper-in" id="paperIn">
+        <div class="tape"></div>
+        <div class="stamp"><span>20</span><span>· 10 ·</span></div>
+        <div id="ltText"></div>
+      </div>
+      <svg class="lt-flower f1" viewBox="-50 -50 100 100">
+        <g fill="#f58cb3" stroke="#d9608f" stroke-width="1">
+          <ellipse rx="13" ry="24" cy="-22" />
+          <ellipse rx="13" ry="24" cy="-22" transform="rotate(72)" />
+          <ellipse rx="13" ry="24" cy="-22" transform="rotate(144)" />
+          <ellipse rx="13" ry="24" cy="-22" transform="rotate(216)" />
+          <ellipse rx="13" ry="24" cy="-22" transform="rotate(288)" />
+        </g>
+        <circle r="9" fill="#ffd45e" />
+        <circle r="4" fill="#d9902a" />
+      </svg>
+      <svg class="lt-flower f2" viewBox="-50 -50 100 100">
+        <g fill="#c9b4f5" stroke="#9a7fdc" stroke-width="1">
+          <ellipse rx="12" ry="22" cy="-21" />
+          <ellipse rx="12" ry="22" cy="-21" transform="rotate(60)" />
+          <ellipse rx="12" ry="22" cy="-21" transform="rotate(120)" />
+          <ellipse rx="12" ry="22" cy="-21" transform="rotate(180)" />
+          <ellipse rx="12" ry="22" cy="-21" transform="rotate(240)" />
+          <ellipse rx="12" ry="22" cy="-21" transform="rotate(300)" />
+        </g>
+        <circle r="8" fill="#ffe58a" />
+      </svg>
+      <button class="glass-btn lt-done" id="ltDone">Đóng thư ♥</button>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
