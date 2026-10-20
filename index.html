@@ -84,6 +84,14 @@
     <svg class="rope-svg" id="ropeSvg"></svg>
     <div class="clothesline-track" id="clotheslineTrack"></div>
     
+    <!-- Bộ chuyển đổi bộ lọc màu Vintage / Warm / Natural -->
+    <div class="filter-controls">
+      <button class="filter-btn active" data-filter="natural">Màu Tự Nhiên</button>
+      <button class="filter-btn" data-filter="vintage">Cổ Điển</button>
+      <button class="filter-btn" data-filter="warm">Ấm Áp</button>
+      <button class="filter-btn" data-filter="dreamy">Mộng Mơ</button>
+    </div>
+
     <div class="gallery-controls">
       <button class="glass-btn rope-btn" id="prevPhotoBtn">Trước</button>
       <div class="rope-counter" id="photoCounter">1 / 27</div>
@@ -91,6 +99,22 @@
       <button class="glass-btn rope-btn" id="autoPhotoBtn">Tự động</button>
       <button class="glass-btn rope-btn" id="replayFromEndBtn">Xem lại từ đầu</button>
       <button class="glass-btn rope-btn close-rope" id="closeRopeBtn">Trở về</button>
+    </div>
+
+    <!-- Modal Phóng To Toàn Màn Hình Khi Chạm Đúp Hoặc Bấm Vào Ảnh -->
+    <div class="preview-modal" id="previewModal">
+      <div class="preview-card">
+        <button class="preview-close-btn" id="closePreviewBtn">×</button>
+        <div class="preview-img-box">
+          <img id="previewImg" src="" alt="Ảnh Ngọc Mai">
+        </div>
+        <div class="preview-info">
+          <p class="preview-wish" id="previewWish"></p>
+          <div class="preview-actions">
+            <button class="glass-btn rope-btn" id="previewDownloadBtn">Lưu Ảnh</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Banner Lời Chúc 20/10 Cuối Cùng Cực Kỳ Cầu Kỳ -->

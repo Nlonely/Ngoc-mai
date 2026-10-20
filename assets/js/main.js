@@ -1172,6 +1172,48 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
     const confettiCanvas = document.getElementById('confettiCanvas');
     const cCtx = confettiCanvas ? confettiCanvas.getContext('2d') : null;
 
+    // Preview modal elements
+    const previewModal = document.getElementById('previewModal');
+    const previewImg = document.getElementById('previewImg');
+    const previewWish = document.getElementById('previewWish');
+    const closePreviewBtn = document.getElementById('closePreviewBtn');
+    const previewDownloadBtn = document.getElementById('previewDownloadBtn');
+
+    function openPreview(idx) {
+      previewImg.src = PHOTOS[idx];
+      previewWish.textContent = WISHES[idx % WISHES.length];
+      previewModal.style.display = 'flex';
+      previewModal.offsetHeight;
+      previewModal.classList.add('show');
+    }
+    function closePreview() {
+      previewModal.classList.remove('show');
+      setTimeout(() => { if (!previewModal.classList.contains('show')) previewModal.style.display = 'none'; }, 400);
+    }
+    if (closePreviewBtn) closePreviewBtn.addEventListener('click', closePreview);
+    if (previewModal) previewModal.addEventListener('click', e => { if (e.target === previewModal) closePreview(); });
+    if (previewDownloadBtn) previewDownloadBtn.addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.href = previewImg.src;
+      link.download = `Ngoc-Mai-20-10.jpg`;
+      document.body.appendChild(link); link.click(); document.body.removeChild(link);
+    });
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        ropeGalleryEl.className = ropeGalleryEl.className.replace(/filter-\w+/g, '').trim();
+        if (f !== 'natural') ropeGalleryEl.classList.add('filter-' + f);
+        if (previewModal) {
+          previewModal.className = previewModal.className.replace(/filter-\w+/g, '').trim();
+          if (f !== 'natural') previewModal.classList.add('filter-' + f);
+        }
+      });
+    });
+
     let currentPhotoIdx = 0;
     let isAutoPlaying = true;
     let autoPlayTimer = null;
@@ -1232,9 +1274,18 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
         dateTag.textContent = '20.10 ♥';
         card.appendChild(dateTag);
 
+        // Single click -> navigate to card; double-click / tap -> open full preview
+        let cardClickTimer = null;
         card.addEventListener('click', () => {
           stopAutoPlay();
-          goToPhoto(idx);
+          if (cardClickTimer) {
+            clearTimeout(cardClickTimer);
+            cardClickTimer = null;
+            openPreview(idx);
+          } else {
+            goToPhoto(idx);
+            cardClickTimer = setTimeout(() => { cardClickTimer = null; }, 320);
+          }
         });
 
         clotheslineTrack.appendChild(card);
@@ -1246,16 +1297,19 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
     function drawRopes() {
       const W = window.innerWidth;
       const H = window.innerHeight;
+      const isTiny = W <= 420;
       const isMobile = W <= 600;
-      const cardW = isMobile ? 150 : 175;
-      const spacing = cardW + (isMobile ? 35 : 55);
+      const cardW = isTiny ? 110 : (isMobile ? 135 : 175);
+      const spacing = cardW + (isTiny ? 22 : isMobile ? 32 : 55);
       const centerX = W / 2;
 
-      // 3 tầng hàng dây theo trục Y
+      // 3 tầng hàng dây theo trục Y - điều chỉnh để không đè lên controls bar
+      const controlsH = isMobile ? 90 : 70; // chiều cao controls bar ước tính
+      const usableH = H - controlsH - (isMobile ? 90 : 80); // trừ đi controls và filter bar
       const rowBaseY = [
-        H * 0.16, // Hàng 1
-        H * 0.42, // Hàng 2
-        H * 0.68  // Hàng 3
+        80 + usableH * 0.08,   // Hàng 1
+        80 + usableH * 0.40,   // Hàng 2
+        80 + usableH * 0.72    // Hàng 3
       ];
 
       const pinCoordsByRow = [[], [], []];
@@ -1502,6 +1556,8 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
       e.stopPropagation();
       e.preventDefault();
       hideGrandWish();
+      // After closing grand wish, open preview of current photo
+      setTimeout(() => openPreview(currentPhotoIdx), 400);
     });
     grandWishModal.addEventListener('click', (e) => {
       if (e.target === grandWishModal) {
