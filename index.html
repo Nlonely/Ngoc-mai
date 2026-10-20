@@ -89,6 +89,7 @@
       <div class="rope-counter" id="photoCounter">1 / 27</div>
       <button class="glass-btn rope-btn" id="nextPhotoBtn">Sau ›</button>
       <button class="glass-btn rope-btn" id="autoPhotoBtn">Tự động ▶</button>
+      <button class="glass-btn rope-btn" id="replayFromEndBtn">↺ Xem lại từ đầu</button>
       <button class="glass-btn rope-btn close-rope" id="closeRopeBtn">✕ Trở về</button>
     </div>
 
@@ -104,9 +105,15 @@
           Chúc em có một ngày 20/10 đẹp tựa như mơ, luôn rạng ngời xinh đẹp, ngập tràn tiếng cười và đạt được trọn vẹn mọi điều em từng mong ước! 🌸💖
         </p>
         <div class="grand-badge">Happy Vietnamese Women's Day • 20.10</div>
-        <button class="glass-btn grand-close-btn" id="closeGrandBtn">Ngắm Lại Ảnh ✿</button>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <button class="glass-btn grand-close-btn" id="closeGrandBtn">Ngắm Lại Ảnh ✿</button>
+          <button class="glass-btn grand-close-btn" id="downloadCurrentBtn" style="background:linear-gradient(135deg,rgba(46,204,113,0.35),rgba(39,174,96,0.35));border-color:rgba(120,240,160,0.6);">📥 Lưu Ảnh Này</button>
+          <button class="glass-btn grand-close-btn" id="replayFromModalBtn" style="background:linear-gradient(135deg,rgba(100,149,237,0.4),rgba(147,112,219,0.4));border-color:rgba(180,200,255,0.6);">↺ Xem Lại Từ Đầu</button>
+        </div>
       </div>
     </div>
+    <!-- Canvas pháo hoa giấy & hạt ánh sáng lấp lánh -->
+    <canvas id="confettiCanvas" style="position:absolute;inset:0;pointer-events:none;z-index:45;"></canvas>
   </div>
 
   <script src="assets/js/main.js"></script>
