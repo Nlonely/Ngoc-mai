@@ -594,6 +594,7 @@
 
     /* ================= CẢNH TRIỂN LÃM TREO DÂY THỪNG ================= */
     .rope-gallery {
+      display: none;
       position: fixed;
       inset: 0;
       z-index: 60;
@@ -606,6 +607,7 @@
     }
 
     .rope-gallery.show {
+      display: block;
       opacity: 1;
       pointer-events: auto;
     }

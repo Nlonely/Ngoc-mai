@@ -1300,6 +1300,9 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
       initGalleryLights();
       initRopeCards();
       currentPhotoIdx = 0;
+      ropeGalleryEl.style.display = 'block';
+      // Ép reflow để animation opacity hoạt động mượt
+      ropeGalleryEl.offsetHeight;
       ropeGalleryEl.classList.add('show');
       grandWishModal.classList.remove('show');
       drawRopes();
@@ -1310,6 +1313,11 @@ const PHOTOS = ["assets/photos/photo-01.jpg", "assets/photos/photo-02.jpg", "ass
       stopAutoPlay();
       ropeGalleryEl.classList.remove('show');
       grandWishModal.classList.remove('show');
+      setTimeout(() => {
+        if (!ropeGalleryEl.classList.contains('show')) {
+          ropeGalleryEl.style.display = 'none';
+        }
+      }, 1000);
     }
 
     nextPhotoBtn.addEventListener('click', () => { stopAutoPlay(); nextPhoto(); });
